@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="OneThreeFive.MainPage"
+             BackgroundColor="{AppThemeBinding Light=#F4F5F7, Dark=#121212}"
+             Title="One Three Five Daily Planner">
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="20"
+                             Padding="20">
+
+            <!-- Page Header -->
+            <VerticalStackLayout Spacing="4">
+                <Label Text="Today's Focus"
+                       FontSize="28"
+                       FontAttributes="Bold"
+                       TextColor="{AppThemeBinding Light=#111827, Dark=#F9FAFB}"/>
+                <Label Text="One Big Goal, Three Medium Tasks, Five Small Wins."
+                       FontSize="14"
+                       TextColor="{AppThemeBinding Light=#4B5563, Dark=#9CA3AF}"/>
+            </VerticalStackLayout>
+
+            <!-- SECTION 1: THE BIG TASK (1) -->
+            <VerticalStackLayout Spacing="8">
+                <Label Text="THE ONE IMPORTANT TASK"
+                       FontSize="12"
+                       FontAttributes="Bold"
+                       TextColor="#6366F1"/>
+
+                <Border StrokeThickness="0"
+                        BackgroundColor="{AppThemeBinding Light=#FFFFFF, Dark=#1E1E1E}"
+                        StrokeShape="RoundRectangle 12"
+                        Padding="16">
+                    <CollectionView ItemsSource="{Binding BigTask}">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid ColumnDefinitions="Auto,*"
+                                      ColumnSpacing="12"
+                                      Padding="0,6">
+                                    <CheckBox Grid.Column="0"
+                                              IsChecked="{Binding IsCompleted}"
+                                              VerticalOptions="Center"
+                                              Color="#6366F1"/>
+                                    <Entry Grid.Column="1"
+                                           Text="{Binding Title}"
+                                           Placeholder="Main task"
+                                           FontSize="16"
+                                           BackgroundColor="Transparent"/>
+                                </Grid>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </Border>
+            </VerticalStackLayout>
+            <!-- SECTION 2: MEDIUM TASKS (3) -->
+            <VerticalStackLayout Spacing="8">
+                <Label Text="THE THREE SUPPORTING TASKS"
+                       FontSize="12"
+                       FontAttributes="Bold"
+                       TextColor="#0EA5E9"/>
+
+                <Border StrokeThickness="0"
+                        BackgroundColor="{AppThemeBinding Light=#FFFFFF, Dark=#1E1E1E}"
+                        StrokeShape="RoundRectangle 12"
+                        Padding="16">
+                    <CollectionView ItemsSource="{Binding MediumTasks}">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid ColumnDefinitions="Auto,*"
+                                      ColumnSpacing="12"
+                                      Padding="0,6">
+                                    <CheckBox Grid.Column="0"
+                                              IsChecked="{Binding IsCompleted}"
+                                              VerticalOptions="Center"
+                                              Color="#0EA5E9"/>
+                                    <Entry Grid.Column="1"
+                                           Text="{Binding Title}"
+                                           Placeholder="Supporting task"
+                                           BackgroundColor="Transparent"/>
+                                </Grid>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </Border>
+            </VerticalStackLayout>
+
+            <!-- SECTION 3: SMALL TASKS (5) -->
+            <VerticalStackLayout Spacing="8">
+                <Label Text="THE FIVE MAINTENANCE TASKS"
+                       FontSize="12"
+                       FontAttributes="Bold"
+                       TextColor="#10B981"/>
+
+                <Border StrokeThickness="0"
+                        BackgroundColor="{AppThemeBinding Light=#FFFFFF, Dark=#1E1E1E}"
+                        StrokeShape="RoundRectangle 12"
+                        Padding="16">
+                    <CollectionView ItemsSource="{Binding SmallTasks}">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid ColumnDefinitions="Auto,*"
+                                      ColumnSpacing="12"
+                                      Padding="0,6">
+                                    <CheckBox Grid.Column="0"
+                                              IsChecked="{Binding IsCompleted}"
+                                              VerticalOptions="Center"
+                                              Color="#10B981"/>
+                                    <Entry Grid.Column="1"
+                                           Text="{Binding Title}"
+                                           Placeholder="Quick task"
+                                           BackgroundColor="Transparent"/>
+                                </Grid>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </Border>
+            </VerticalStackLayout>
+
+            <!-- Reset Action Button -->
+            <Button Text="Complete Day &amp; Reset"
+                    Command="{Binding ResetDayCommand}"
+                    BackgroundColor="#6366F1"
+                    TextColor="White"
+                    FontAttributes="Bold"
+                    CornerRadius="10"
+                    HeightRequest="50"
+                    Margin="0,10,0,30"/>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
